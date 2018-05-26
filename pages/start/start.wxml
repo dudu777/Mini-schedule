@@ -1,0 +1,10 @@
+
+<image class='bg' mode="scaleToFill" src='../../icon/start.png' ></image>
+<view class='kb'>Mini课表
+
+
+</view>
+<view>
+<image class='logo' src='../../icon/logo.png'mode="scaleToFill"></image>
+<view style='position:absolute;top:1040rpx;left:320rpx;font-size:30rpx;'>Mini课表小程序</view>
+</view>

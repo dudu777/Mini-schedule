@@ -1,0 +1,13 @@
+/* pages/choose_bg/choose_bg.wxss */
+.IimgList{
+  display: flex;
+  flex-direction: row
+}
+image {
+width:100px;
+height:300rpx;
+
+display:inline-block;
+overflow:hidden;
+padding:0 25rpx;
+}

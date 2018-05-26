@@ -1,0 +1,24 @@
+/* pages/start/start.wxss */
+
+
+.bg{
+  width:750rpx;
+height:1197rpx
+
+}
+.kb{
+  position: absolute;
+  top:450rpx;
+ left:280rpx;
+font-size:55rpx;
+
+}
+.logo{
+width:60rpx;
+height:60rpx;
+position:absolute;
+top:1025rpx;
+left:250rpx;
+
+
+}

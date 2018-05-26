@@ -1,0 +1,63 @@
+/* pages/user/user.wxss */
+/* .circle{
+background-color: #f0a1a8;
+width:180rpx;
+height:180rpx;
+border-radius:50%;
+} */
+.user{
+  display: inline-block;
+  width:150rpx;
+height:150rpx;
+position:absolute;
+left:300rpx;
+top:250rpx;
+
+ 
+  border-radius: 60%;
+ 
+
+
+}
+.dl{
+  
+  text-align: center;
+  margin-top:420rpx;
+font-size:40rpx;
+
+  color: black;
+
+
+}
+.wdl{
+  
+  text-align: center;
+  margin-top:20rpx;
+font-size:40rpx;
+
+  color: black;
+
+
+}
+.setbg{
+   height: 60rpx;
+  width: 60rpx;
+  float: left;
+  position:absolute;
+top:700rpx;
+left:230rpx;
+
+}
+  button{
+  position:relative;
+background-color:white;
+
+ color: black
+
+}  
+
+
+  button::after{
+    border:none;
+    
+}  

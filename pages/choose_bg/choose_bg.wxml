@@ -1,0 +1,5 @@
+<!--pages/choose_bg/choose_bg.wxml-->
+<view class='imgList'>
+<image bindtap='choose0' src='{{bg0}}' mode='aspectFit'></image>
+<image bindtap='choose1' src='{{bg1}}' mode='aspectFit'></image>
+</view>
