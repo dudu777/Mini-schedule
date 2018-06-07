@@ -1,13 +1,15 @@
 <!--pages/user/user.wxml-->
+
 <view class='circle'>
 
-<image class='user' src='{{imageUrl}}'  bindtap='login'></image>
-<button hidden='{{wdl}}' class='dl' hover-class="none" bindtap='login'>登录</button>
-<button hidden='{{ydl}}' class='dl'>已登录</button>
+  <image class='user' src='{{imageUrl}}' bindtap='login'></image>
+
 </view>
 
 
-<view>
-<image class='setbg' src='../../icon/setbg.png'  bindtap='set_bg'></image> <view style='margin-top:190rpx;margin-left:340rpx;'  bindtap='set_bg'>背景设置</view>
+<view class="button-wrapper">
+  <button type="primary" formType="submit" class="button-login" hidden='{{login}}' bindtap='login' hover-class="none">登录</button>
 
+
+  <button class="button-logout" bindtap="logout" type="default" hidden='{{loginout}}' hover-class="none">退出登录</button>
 </view>

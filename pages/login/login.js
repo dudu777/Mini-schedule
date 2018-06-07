@@ -1,9 +1,6 @@
 var app = getApp();
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     school: '',
     school_num: '',
@@ -11,113 +8,97 @@ Page({
     varify: '',
     url: '',
     list: '',
-    bg: getApp().globalData.bg0
-
+    name: '',
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (e) {
-    console.log(e)
-    var that = this
 
+  onLoad: function (e) {
+    //console.log(e)
+    var that = this
+    wx.showToast({
+      title: '登录信息是你的学号和教务密码！',
+      icon: 'none',
+      duration: 2000
+    })
     that.setData({
       school: e.school,
-      url: 'http://202.199.115.46/(ww2obv451xzcpd45tywivv55)/CheckCode.aspx',
-      bg: e.bg
     })
-
     if (that.data.school == '沈阳化工大学') {
+      wx.request({
+        url: 'https://edu.proflu.cn/syuct',
+        header: {
+          'content-type': 'application/octet-stream',
+        },
+        success: function (e) {
+          console.log(e)
+          that.setData({
+            url: e.data
+          })
+        }
+      })
+    }else{
+      wx.request({
+        url: 'https://edu.proflu.cn/xpu',
+        header: {
+          'content-type': 'application/octet-stream',
+        },
+        success: function (e) {
+          console.log(e)
+          that.setData({
+            url: e.data
+          })
+        }
+      })
 
-      //console.log('请求沈阳化工大学接口')
-
-    } else {
-      //请求先工程大学接口
-      // wx.request({
-      //   url: '',
-      // })
-      console.log('请求先工程大学接口')
     }
   },
   bindKeyInput1: function (e) {
-    console.log(e)
-
     var that = this
-
     that.setData({
       school_num: e.detail.value
     })
   },
   bindKeyInput2: function (e) {
-    console.log(e)
     var that = this
     that.setData({
       school_pas: e.detail.value
     })
   },
   bindKeyInput3: function (e) {
-    console.log(e)
     var that = this
-
-    // if (e.detail.value.length < 4) {
-    //   wx.showModal({
-    //     content: '请输入正确的验证码',
-    //     success: function (res) {
-    //       if (res.confirm) {
-    //         console.log('用户点击确定')
-    //         that.setData({
-    //           url: 'http://202.199.115.46/(ww2obv451xzcpd45tywivv55)/CheckCode.aspx'
-    //         })
-    //       } else if (res.cancel) {
-    //         console.log('用户点击取消')
-    //       }
-    //     }
-    //   })
-    // } else {
-      that.setData({
-        varify: e.detail.value
-      })
-
-    // }
-  },
-  getUserInfo: function (e) {
-    console.log(e)
-
-    var that = this
-    var user = e.detail.userInfo
-
-    wx.navigateTo({
-      url: '/pages/index/index?bg=' + that.data.bg + '&user=' + user,
-
-
+    that.setData({
+      varify: e.detail.value
     })
 
-
-
-
   },
+
   getUserInfo: function (e) {
     var that = this
     var user = e.detail.userInfo
     if (that.data.school == '沈阳化工大学') {
+      wx.showLoading({
+        title: '登录中',
+      })
       wx.request({
-        url: 'http://edu.proflu.cn/syuct',
-
+        url: 'https://edu.proflu.cn/syuct', 
         method: 'POST',
         data: {
-          user: '1621040218',
-          password: 'jingxin123...',
-          yzm: that.data.varify
+          user: that.data.school_num,
+          password: that.data.school_pas,
+          yzm: that.data.varify,
+          file:that.data.url
         },
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function (e) {
-          console.log(e.statusCode )
-          if (e.statusCode == 200) {
-
-
+          wx.hideLoading()
+          console.log(e)
+          if (e.data == '用户名或密码错误') {
+            wx.showModal({ title: '登录失败', content: '请检查信息，重新输入', showCancel: false })
+          }
+          else {
+            wx.showToast({ title: '已登录', icon: 'success', duration: 1500 });
             that.setData({
               list: e.data
             })
@@ -131,36 +112,42 @@ Page({
               url: '/pages/user/user'
 
             })
-            that.getuserInfo()
-
-          } else {
-            console.log('更新页面重新输入')
 
           }
-
-
         },
+        fail: function (e) {
+          wx.hideLoading()
+          console.log('请求不成功' + e)
+          wx.showModal({ title: '登录失败', content: '请检查网络设置!', showCancel: false });
+        }
 
       })
-
-
     } else {
+      wx.showLoading({
+        title: '登录中',
+      })
 
       wx.request({
-        url: 'http://edu.proflu.cn/xpu',
+        url: 'https://edu.proflu.cn/xpu',
         data: {
-          user: '41603030130',
-          password: 'dupingping1215',
-          yzm: that.data.varify
+          user: that.data.school_num,
+          password: that.data.school_pas,
+          yzm: that.data.varify,
+          file: that.data.url
         },
         method: 'POST',
         header: {
-          'content-type': 'application/x-www-form-urlencoded' // 默认值
+          'Content-Type': 'application/x-www-form-urlencoded'// 默认值
         },
 
         success: function (e) {
-          if (e.statusCode == 200) {
-
+          wx.hideLoading()
+          console.log(e)
+          if (e.data == '用户名或密码错误') {
+            wx.showModal({ title: '登录失败', content: '请检查信息，重新输入', showCancel: false })
+          }
+          else {
+            wx.showToast({ title: '已登录', icon: 'success', duration: 1500 });
             that.setData({
               list: e.data
             })
@@ -170,45 +157,27 @@ Page({
             })
             wx.setStorageSync('list', that.data.list)
             wx.switchTab({
+              // url: '/pages/schedule/schedule'
               url: '/pages/user/user'
 
             })
 
-          } else {
-            console.log('更新页面重新输入')
-
-    
           }
-
-
-
+        },
+        fail: function (e) {
+          wx.hideLoading()
+          wx.hideLoading()
+          console.log('请求不成功' + e)
+          wx.showModal({ title: '登录失败', content: '请检查网络设置!', showCancel: false });
         }
 
+      })
+    }
 
-
-
-
-        })
-    
-
-
-
-
-  
+  },
+  cancel: function (e) {
+    wx.switchTab({
+      url: '/pages/user/user'
+    })
   }
-
-
-
-
-
-
-
-
-
-
-
-},
-  
-  
-
 })

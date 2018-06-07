@@ -7,21 +7,15 @@ Page({
   data: {
     items: [
       { value: '沈阳化工大学' },
-      {value: '西安工程大学' }
+      { value: '西安工程大学' }
     ],
-    school:'',
+    school: '',
     bg: getApp().globalData.bg0
   },
 
   onLoad: function (e) {
-  
-    console.log(e)
-    var that = this
-    that.setData({
-      bg:e.bg
-    })
+   
 
-    
   },
 
   //选择学校
@@ -31,16 +25,16 @@ Page({
     that.setData({
       school: e.detail.value
     })
-   // console.log(that.data.school)
+    // console.log(that.data.school)
   },
 
-//确认信息
-sure:function(e){
-  var that =this
-  wx.navigateTo({
-    url: '/pages/login/login?school='+that.data.school+'&pg='+that.data.bg,
-  })
-}
- 
- 
+  //确认信息
+  sure: function (e) {
+    var that = this
+    wx.navigateTo({
+      url: '/pages/login/login?school=' + that.data.school + '&pg=' + that.data.bg,
+    })
+  }
+
+
 })

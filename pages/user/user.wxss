@@ -5,6 +5,13 @@ width:180rpx;
 height:180rpx;
 border-radius:50%;
 } */
+.name {
+  text-align: center;
+  margin-top: 19rpx;
+  font-size: 36rpx;
+ color:black;
+ 
+}
 .user{
   display: inline-block;
   width:150rpx;
@@ -22,10 +29,11 @@ top:250rpx;
 .dl{
   
   text-align: center;
-  margin-top:420rpx;
+  
 font-size:40rpx;
 
   color: black;
+margin-top:400rpx;
 
 
 }
@@ -48,13 +56,24 @@ top:700rpx;
 left:230rpx;
 
 }
-  button{
-  position:relative;
-background-color:white;
+button{
+width:160rpx;
+height:75rpx;
+line-height:75rpx;
 
- color: black
 
-}  
+}
+.button-wrapper{
+   
+width:400rpx;
+margin:600rpx auto;
+
+}
+
+button[type=primary] {
+color:#FFFFFF;
+background-color:#f0a1a8;
+}
 
 
   button::after{

@@ -1,40 +1,35 @@
 {
-  "pages":
-   
-    [
-      "pages/start/start",
-      "pages/user/user",
+  "pages": [
+    "pages/start/start",
+    "pages/user/user",
     "pages/index/index",
     "pages/login/login",
     "pages/choose_bg/choose_bg",
     "pages/schedule/schedule"
   ],
   "window": {
-   "backgroundTextStyle": "dark",
-  "navigationBarBackgroundColor":"white",
-  "navigationBarTitleText": "Mini课表",
-  "navigationBarTextStyle": "black"
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "white",
+    "navigationBarTitleText": "Mini课表",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [
       {
         "pagePath": "pages/schedule/schedule",
+        "text": "课表",
         "iconPath": "/icon/kb1.png",
         "selectedIconPath": "/icon/kb0.png"
-       
       },
       {
         "pagePath": "pages/user/user",
-       "iconPath": "/icon/user1.png",
-      "selectedIconPath": "/icon/user0.png"
-   
+        "text": "我的",
+        "iconPath": "/icon/user1.png",
+        "selectedIconPath": "/icon/user0.png"
       }
     ],
     "color": "#bfbfbf",
-    "selectedColor": "#17aff8",
+    "selectedColor": "pink",
     "borderStyle": "white"
   }
-  
- 
-  
 }

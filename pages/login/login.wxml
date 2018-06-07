@@ -1,38 +1,28 @@
-<image class='bg' mode="scaleToFill" src='{{bg}}' ></image> 
+<image class='bg' mode="scaleToFill" src='../../icon/bg0.png'></image>
 <view class='choose' style=''>
 
 
-<view class='um'>
-<text>用户名</text>
-<input class='infoput' bindinput='bindKeyInput1' value='{{school_num}}'></input>
-</view>
+  <view class='um'>
+    <text>用户名</text>
+    <input class='infoput' bindinput='bindKeyInput1' value='{{school_num}}'></input>
+  </view>
 
-<view class='pw'>
-<text>* 密码</text>
-<input class='infoput' style='margin-left:48rpx;'  bindinput='bindKeyInput2' value='{{school_pas}}' password='true'></input>
-</view>
+  <view class='pw'>
+    <text>* 密码</text>
+    <input class='infoput' style='margin-left:48rpx;' bindinput='bindKeyInput2' value='{{school_pas}}' password='true'></input>
+  </view>
 
-<view class='vy'>
-<text>验证码</text>
-<input class='vyput' value='{{varify}}'style='width:170rpx' maxlength='4' confirm-type="done" bindinput="bindKeyInput3"></input>
-<image wx:if='{{school}}=="沈阳化工大学"' class='num' mode='aspectFit' src='{{url}}'></image>
+  <view class='vy'>
+    <text>验证码</text>
+    <input class='vyput' value='{{varify}}' style='width:170rpx' maxlength='4' confirm-type="done" bindinput="bindKeyInput3" cursor-spacing='80rpx'></input>
+     <image wx:if='{{school}}=="沈阳化工大学"' class='num' mode='aspectFit' src='{{url}}'></image> 
 
-
-<image wx:else class='num' mode='aspectFit' src='{{url}}'></image>
- </view>  
-
- <!-- <view wx:else>
-<image class='num' mode='aspectFit' src='http://202.200.206.54/(44fvqwickc1jglnulv3peq55)/CheckCode.aspx'></image>
-</view>   -->
+ </view> 
 
 
-
- <view class='login'>
-<button style='background-color:white;font-size:35rpx;' bindtap='login' hover-class="none" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
- <text style='font_size:35rpx;color:black' bindtap='cancel'>取消</text>
-</view>  
-
-
-
+  <view class='login'>
+    <button style='background-color:white;font-size:35rpx;' hover-class="none" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
+    <text style='font_size:35rpx;color:black' bindtap='cancel'>取消</text>
+  </view>
 
 </view>

@@ -1,76 +1,62 @@
-.bg{
-  width:750rpx;
-height:1197rpx
-
-}
-.choose{
-  position:absolute;
-background-color:#fbe5d6;
-margin:0 31px;
-top:350rpx;
-padding-bottom:20rpx;
-
-
-}
-.um{
-display:inline-block;
-padding:30rpx;
-margin-left:56rpx;
-
-
-
-
-}
-.pw{
-display:inline-block;
-padding:30rpx;
-margin-left:56rpx;
-
-
-}
-.vy{
-display:inline-block;
-padding:30rpx;
-margin-left:50rpx;
-
-
+.bg {
+  width: 750rpx;
+  height: 1197rpx;
 }
 
-
-.num{
-position:absolute;
-top:260rpx;
-left:195rpx;
-height:60rpx;
-
+.choose {
+  position: absolute;
+  background-color: #fbe5d6;
+  margin: 0 31px;
+  top: 350rpx;
+  padding-bottom: 20rpx;
 }
-.infoput{
-  float:right;
-border:1rpx solid black;
-margin-left:20px;
-width:350rpx;
-text-align:center;
 
-
+.um {
+  display: inline-block;
+  padding: 30rpx;
+  margin-left: 56rpx;
 }
-.vyput{
-  float:right;
-border:1rpx solid black;
-margin-left:48rpx;
 
-width:350rpx;
-text-align:center;
-
-
+.pw {
+  display: inline-block;
+  padding: 30rpx;
+  margin-left: 56rpx;
 }
-.login{
- width:500rpx;
-height:80rpx;
-color:black;
 
-line-height:80rpx;
+.vy {
+  display: inline-block;
+  padding: 30rpx;
+  margin-left: 50rpx;
+}
 
-display: flex;
-flex-direction: row
+.num {
+  position: absolute;
+  top: 260rpx;
+  left: 195rpx;
+  height: 60rpx;
+}
 
+.infoput {
+  float: right;
+  border: 1rpx solid black;
+  margin-left: 20px;
+  width: 350rpx;
+  text-align: center;
+}
+
+.vyput {
+  float: right;
+  border: 1rpx solid black;
+  margin-left: 48rpx;
+  width: 350rpx;
+  text-align: center;
+}
+
+.login {
+  width: 500rpx;
+  height: 80rpx;
+  color: black;
+  line-height: 80rpx;
+  display: flex;
+  flex-direction: row;
 }

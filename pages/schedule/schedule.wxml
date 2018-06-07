@@ -1,26 +1,121 @@
+<!--pages/schedule/schedule.wxml-->
+<view class="nav-head">
+  <!-- <form bindtap='message'  report-submit='true'>上课提醒</form> -->
 
-<view class="top">
-  <view wx:for="{{['日', '一','二','三','四','五','六']}}" wx:key="index" class="top-text">周{{item}}</view>
+  <view class="week-selector">
+    <view bindtap="prevWeekHandler">
+      <image class="img-button pre-week-btn" src="../../icon/prev.png"></image>
+    </view>
+    <view class="cur-week">
+      <view class="week">{{curWeek}}</view>
+      <view class="title">{{curTitle}}</view>
+    </view>
+    <view bindtap="nextWeekHandler">
+      <image src="../../icon/next.png" class="img-button next-week-btn"></image>
+     
+    </view>
+     
+  </view>
+  <button open-type='share' plain='true'>
+  <image class='share' bindtap='share' src='../../icon/share.png' style='width:60rpx; height:60rpx'></image></button>
+
 </view>
-<scroll-view scroll-y="true" class="scroll">
-  <view style="height:1200rpx;width:730rpx;display:flex;">
-    <view style="background-color:pink;color:white;">
-      <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12]}}" wx:key="index" class="left">
-        {{item}}
+
+
+<view class="tab-top">
+  <view class="cur-month">{{curMonth}}月</view>
+  <view class="week-list">
+    <view wx:for="{{weekDates}}" wx:key="*this" class="day-text {{todayIndex == index ? 'active' : ''}}">
+      <text>{{weekLabels[index]}}</text>
+      <text>{{item}}</text>
+    </view>
+  </view>
+</view>
+
+<scroll-view scroll-y="true" class="tab-scroll">
+  <view class="tab-container">
+    <!--分节-->
+    <view class="tab-divide">
+      <view wx:for="{{['上午', '下午', '晚上']}}" wx:key="*this" class="tab-divide-item">
+        <text>{{item}}</text>
       </view>
     </view>
-    <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12]}}" wx:key="index"  >
-      <view style="width:750rpx;margin-top:{{(index+1)*100}}rpx;  position: absolute;border-bottom:1rpx solid {{index==3?'red':'lightgray'}}">
-      
+    <view class="tab-section">
+      <view wx:for="{{[1,2,3]}}" wx:key="*this" wx:for-index="index1" class="tab-section-divide">
+        <view wx:for="{{[1,2,3,4]}}" wx:for-item="item2" wx:key="*this" class="tab-section-item">
+          <text>{{item2 + index1 * 4}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!--线条-->
+    <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12]}}" wx:key="*this">
+      <view style="top:{{item*50}}px;" class="tab-line"></view>
+    </view>
+
+    <!--课程-->
+    <view wx:for="{{tasklist}}" wx:key="id">
+
+
+      <view wx:if='{{item.lstart<=curweek&item.lend>=curweek&item.is_week==0}}'>
+        <view class="course-item" bindtap="showCardView" data-index="{{index}}" data-type="{{item.type}}" style="margin-left:{{item.day*90+1}}rpx;margin-top:{{(item.start-1)*50+1}}px;height:{{item.sections*50-4}}px;">
+          <view class="course-item-inner" style="height:{{item.sections*50-5}}px;background-color:{{colorArrays[index%9]}}">
+            <text>{{item.course}}</text>
+            <text>{{item.teacher}}</text>
+            <text>{{item.place}}</text>
+          </view>
+        </view>
       </view>
 
-    </view>
-    <view style='width:100%;height:0;border-bottom:0.5rpx solid red;position:absolute;top:800rpx;margin-left:35rpx;'></view>
 
-    <!--课表-->
-    <view wx:for="{{wlist}}" wx:key="index">
-      <view class="flex-item kcb-item" bindtap="showCardView" data-statu="open" data-index="{{index}}" style="width:120rpx;margin-left:{{(item.xqj-1)*150}}rpx;margin-top:{{(item.skjc-1)*100+5}}rpx;height:{{item.skcd*100-5}}rpx;background-color:{{colorArrays[index%9]}}">
-        <view class="smalltext" >{{item.kcmc}}</view>
+
+
+
+
+<!-- <view wx:if='{{item.lstart<=curweek&item.lend>=curweek&item.is_week==0}}'>
+        <view class="course-item" bindtap="showCardView" data-index="{{index}}" data-type="{{item.type}}" style="margin-left:{{item.day*90+1}}rpx;margin-top:{{(item.start-1)*50+1}}px;height:{{item.sections*50-4}}px;">
+          <view class="course-item-inner" style="height:{{item.sections*50-5}}px;background-color:{{colorArrays[index%9]}}">
+            <text>{{item.course}}</text>
+            <text>{{item.teacher}}</text>
+            <text>{{item.place}}</text>
+          </view>
+        </view>
+      </view> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <view wx:if='{{item.lstart<=curweek&item.lend>=curweek&curweek%2==2&item.is_week==2}}'>
+        <view class="course-item" bindtap="showCardView" data-index="{{index}}" data-type="{{item.type}}" style="margin-left:{{item.day*90+1}}rpx;margin-top:{{(item.start-1)*50+1}}px;height:{{item.sections*50-4}}px;">
+          <view class="course-item-inner" style="height:{{item.sections*50-5}}px;background-color:{{colorArrays[index%9]}}">
+            <text>{{item.course}}</text>
+            <text>{{item.teacher}}</text>
+            <text>{{item.place}}</text>
+          </view>
+        </view>
+      </view>
+
+
+
+      <view wx:if='{{item.lstart<=curweek&item.lend>=curweek&curweek%2==1&item.is_week==1}}'>
+        <view class="course-item" bindtap="showCardView" data-index="{{index}}" data-type="{{item.type}}" style="margin-left:{{item.day*90+1}}rpx;margin-top:{{(item.start-1)*50+1}}px;height:{{item.sections*50-4}}px;">
+          <view class="course-item-inner" style="height:{{item.sections*50-5}}px;background-color:{{colorArrays[index%9]}}">
+            <text>{{item.course}}</text>
+            <text>{{item.teacher}}</text>
+            <text>{{item.place}}</text>
+          </view>
+        </view>
       </view>
     </view>
   </view>
